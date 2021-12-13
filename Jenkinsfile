@@ -9,6 +9,11 @@ pipeline {
         }
 
         stage("Test") {
+            when {
+                expression {
+                    env.BRANCH_NAME == 'origin'
+                }
+            }
             steps {
                 echo 'Testing the application...'
             }
@@ -18,6 +23,12 @@ pipeline {
             steps {
                 echo 'Deploying the application...'
             }
+        }
+    }
+
+    post {
+        always {
+
         }
     }
 }
